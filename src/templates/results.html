@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+	<ul>
+		{% for person in people %}
+			<li>{{ person.name }} has contacted {{ person.number }}</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
