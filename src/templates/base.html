@@ -13,33 +13,77 @@
 			font-size: 16px;
 		}
 		a {
-     text-decoration:none;
-     color:#0077aa;
-    }
-    a.button,div.container,input.button {
-     float:left;
-    }
-    a.button,input.button {
-     background-color:#0077aa;
-     border:1px solid #660000;
-     border-radius:5px;
-     color:#fff;
-     margin-right:10px;
-     padding:10px 10px 10px 10px;
-    }
+			text-decoration:none;
+			color:#0077aa;
+		}
+			a.button,div.container,input.button {
+			float:left;
+		}
+		a.button,input.button {
+			background-color:#0077aa;
+			border:1px solid #660000;
+			border-radius:5px;
+			color:#fff;
+			margin-right:10px;
+			padding:10px 10px 10px 10px;
+		}
 
 		ul.nav {
 			list-style-type: none;
 		}
+		/* Dropdown Button */
+		.dropbtn {
+			background-color: #3498DB;
+			color: white;
+			padding: 16px;
+			font-size: 16px;
+			border: none;
+			cursor: pointer;
+		}
+
+		/* Dropdown button on hover & focus */
+		.dropbtn:hover, .dropbtn:focus {
+			background-color: #2980B9;
+		}
+
+		/* The container <div> - needed to position the dropdown content */
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+
+		/* Dropdown Content (Hidden by Default) */
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f1f1f1;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			z-index: 1;
+		}
+
+		/* Links inside the dropdown */
+		.dropdown-content a {
+			color: black;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+		}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
 
 	</style>
 	<body>
 		<h1>Representative Counter</h1>
 		<p>
-				{{ nav_link('index', 'Home') }}
-				<!--{{ nav_link('entry', "Log a call") }}-->
-				{{ nav_link('results', "View results") }}
-				<!--{{ nav_link('names', "Supporters")}}-->
+			{{ nav_link('index', 'Home') }}
+			{{ nav_link('entry', "Log a call") }}
+			{{ nav_link('results', "View results") }}
+			<!--{{ nav_link('names', "Supporters")}}-->
 		</p>
 		<br><br><br>
 		<hr>
