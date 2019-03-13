@@ -24,6 +24,7 @@ def entry_post():
 	name = request.form['name']
 	rep = request.form['rep']
 	school = request.form['school']
+	contact = request.form['contact']
 
 	print("New log!")
 	print("Name: " + name)
@@ -39,7 +40,7 @@ def entry_post():
 	# communication(call, email, letter, etc)
 	
 	with open("log/" + name, "w+") as file:
-		file.write(rep + "\n" + school)
+		file.write(rep + "\n" + school + "\n" + contact)
 	return render_template('thankyou.html')
 
 if __name__=="__main__":
