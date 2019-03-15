@@ -11,6 +11,58 @@ th = "<th style=\"border:1px solid black; border-collapse:collapse;\">"
 sectionStyle = "<tr style= \"border:1px solid black; border-collapse:collapse;\" > " + th
 sectionEnd = " </th> </tr> "
 
+def renderScript(name):
+	with open("mostwanted/" + name, "r") as file:
+		lines = file.read().split("\n")
+		fullName = lines[0]
+		phone = lines[1]
+		opener = lines[2]
+		yes = lines[3]
+		no = lines[4]
+		img = lines[5]
+		return render_template('scripttemplate.html', name=fullName, phone=phone, opener=opener, yes=yes, no=no, title=fullName, imgsrc=img)
+
+@app.route("/harris")
+def harris():
+	return renderScript("harris")
+
+@app.route("/inslee")
+def inslee():
+	return renderScript("inslee")
+
+@app.route("/orourke")
+def orourke():
+	return renderScript("orourke")
+
+@app.route("/sanders")
+def sanders():
+	#☭☭☭☭☭☭☭☭☭☭☭☭
+	return renderScript("sanders")
+
+@app.route("/barrasso")
+def barrasso():
+	return renderScript("barrasso")
+
+@app.route("/booker")
+def booker():
+	return renderScript("booker")
+
+@app.route("/pelosi")
+def pelosi():
+	return renderScript("pelosi")
+
+@app.route("/trump")
+def trump():
+	return renderScript("trump") # as if they don't get enough calls already
+
+@app.route("/mcconnell")
+def mcconnell():
+	return renderScript("mcconnell")
+
+@app.route("/wheeler")
+def wheeler():
+	return renderScript("wheeler")
+
 def getPeople():
 	names = os.listdir("log/")
 	people = []
@@ -33,6 +85,10 @@ def getPeople():
 def index():
 	#print(getPeople()[0])
 	return render_template('index.html')
+
+@app.route("/mostwanted")
+def mostwanted():
+	return render_template('mostwanted.html')
 
 @app.route("/entry")
 def entry():
@@ -117,6 +173,7 @@ def entry_post():
 			file.write(rep + "\n" + contact + "\n")
 
 	return render_template('thankyou.html')
+
 
 if __name__=="__main__":
 	app.run()

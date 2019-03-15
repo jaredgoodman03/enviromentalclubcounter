@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+      <img src={{ imgsrc }} alt={{ name }}>
+      <p style="font-size:20px">{{ phone }}</p>
+      <h3>Script:</h3>
+            {{ opener|safe }}
+            <h4>IF YES:</h4>
+            {{ yes|safe }}
+            <h4>IF NO:</h4>
+            {{ no|safe }}
+{% endblock %}
