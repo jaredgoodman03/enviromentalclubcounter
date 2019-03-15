@@ -169,7 +169,8 @@ def entry_post():
 	print("Name: " + name)
 	print("Rep: " + rep)
 	print("School: " + school)
-
+	if rep == "Other":
+		rep = request.form['other']
 	if name == "":
 		return render_template('entry.html', error="This field is required.")
 	
