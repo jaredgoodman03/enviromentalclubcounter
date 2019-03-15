@@ -22,6 +22,14 @@ def renderScript(name):
 		img = lines[5]
 		return render_template('scripttemplate.html', name=fullName, phone=phone, opener=opener, yes=yes, no=no, title=fullName, imgsrc=img)
 
+@app.route("/supporter")
+def supporter():
+	return renderScript("supporter")
+
+@app.route("/denier")
+def denier():
+	return renderScript("denier")
+
 @app.route("/harris")
 def harris():
 	return renderScript("harris")
@@ -102,7 +110,7 @@ def results():
 	for person in people:
 		toDisplay += sectionStyle + person.name + th + str(person.num) + sectionEnd
 	toDisplay += " </table>"
-	return render_template('results.html', form = "<option selected>Number of calls</option> <option>School</option> <option>Representatives</option>", body=toDisplay)
+	return render_template('results.html', form = "<option selected>Number of calls</option> <option>School</option> <option>Representatives</option>", body=toDisplay, title="Number of calls")
 
 @app.route("/results", methods=['GET', 'POST'])
 def post():
@@ -125,30 +133,31 @@ def post():
 		for school in schools:
 			toDisplay += sectionStyle + school.name + th + str(school.count) + sectionEnd
 		toDisplay += "</table>"
-		return render_template('results.html', form = "<option>Number of calls</option> <option selected>School</option> <option>Representatives</option>", body=toDisplay)
+		return render_template('results.html', form = "<option>Number of calls</option> <option selected>School</option> <option>Representatives</option>", body=toDisplay, title="School")
 		
 	if page == "Representatives":
 		people = getPeople()
 		reps = []
 		for person in people:
 			for rep in person.reps:
-				if Counter(rep, 0) not in reps:
-					reps.append(Counter(rep, 1))
-				else:
-					reps[reps.index(Counter(rep, 0))].count += 1
+				if not rep == "Other":
+					if Counter(rep, 0) not in reps:
+						reps.append(Counter(rep, 1))
+					else:
+						reps[reps.index(Counter(rep, 0))].count += 1
 		reps.sort(reverse=True) 
 		toDisplay = tableStyle + sectionStyle + "Name" + th + "# of Contacts" + sectionEnd
 		for rep in reps:
 			toDisplay += sectionStyle + rep.name + th + str(rep.count) + sectionEnd
 
 		toDisplay += "</table>"
-		return render_template('results.html', form = "<option>Number of calls</option> <option>School</option> <option selected>Representatives</option>", body=toDisplay)
+		return render_template('results.html', form = "<option>Number of calls</option> <option>School</option> <option selected>Representatives</option>", body=toDisplay, title="Representatives")
 	return "Hello, world!"
 
 
 @app.route('/entry', methods=['POST'])
 def entry_post():
-	name = request.form['name']
+	name = request.form['name'].title()
 	rep = request.form['rep']
 	school = request.form['school']
 	contact = request.form['contact']
@@ -172,7 +181,7 @@ def entry_post():
 		with open("log/" + name, "a+") as file:
 			file.write(rep + "\n" + contact + "\n")
 
-	return render_template('thankyou.html')
+	return render_template('thankyou.html', title="Log a contact")
 
 
 if __name__=="__main__":
