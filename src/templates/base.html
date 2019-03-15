@@ -1,40 +1,50 @@
 {% from "macros.html" import nav_link with context %}
 <html>
 	<head>
-		<title>{{ title }} | Rep Counter</title>
+		<title>{{ title }} | Contact Counter</title>
+		<!--<meta http-equiv="refresh" content="10" >-->
 	</head>
 	<style>
 		body {
-			background-color: #FFFFFF;
+			background-color: #f5f5f5;
 			color: #454545;
 			font-family: sans-serif;
 			margin-top: 50px;
 			margin-left: 40px;
-			font-size: 16px;
+			font-size: 18px;
+		}
+		h1, h2, h3, h4, h5, h6  {
+			color: #002203
 		}
 		a {
 			text-decoration:none;
 			color:#0077aa;
 		}
-			a.button,div.container,input.button {
+		a.button,div.container,input.button {
 			float:left;
 		}
 		a.button,input.button {
-			background-color:#0077aa;
+			background-color:#002203;
 			border:1px solid #660000;
 			border-radius:5px;
 			color:#fff;
 			margin-right:10px;
 			padding:10px 10px 10px 10px;
+			display: inline;
 		}
 
 		ul.nav {
 			list-style-type: none;
 		}
 
+		table, th, td {
+			border: 5px #FFFFFF;
+			border-collapse: collapse;
+		}
+
 	</style>
 	<body>
-		<h1>Representative Counter</h1>
+		<h1>Contact Counter</h1>
 		<iframe src="http://free.timeanddate.com/countdown/i6o76v9c/n234/cf12/cm0/cu4/ct0/cs0/ca0/cr0/ss0/cac454545/cpc454545/pct/tcfff/fs100/szw320/szh135/tac000/tpc454545/matTime%20until%20strike/mac454545/mptTime%20Since%20Strike%20Started/mpc454545/iso2019-03-15T15:30:00/bo2/pa7" allowTransparency="true" frameborder="0" width="163" height="66"></iframe>
 
 		<p>

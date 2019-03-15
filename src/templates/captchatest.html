@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+	<form method="POST">
+			{{ captcha() }} <!-- This renders an <img> tag with the captcha img. -->
+			<input type="text" name="captcha">
+			<input type="submit">
+	</form>
+{% endblock %}

@@ -1,8 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-	<ul>
-		{% for person in people %}
-			<li>{{ person.name }} has contacted {{ person.num }} person(s)</li>
-		{% endfor %}
-	</ul>
+	<form action="/results" method="POST"> Sort by:
+		<select name="resultsoption">
+			<!--
+				<option>Number of calls</option>
+				<option>School</option>
+				<option>Representatives</option>
+			-->
+			{{ form|safe }}
+		</select>
+		<input type="submit" value="Go"></div>
+	</form>
+	{{ body|safe }} 
 {% endblock %}
