@@ -6,6 +6,10 @@ import logging
 from scorecounter import Counter
 
 app = Flask(__name__)
+tableStyle = "<table style=\"border:1px solid black; border-collapse:collapse;\" >"
+th = "<th style=\"border:1px solid black; border-collapse:collapse;\">"
+sectionStyle = "<tr style= \"border:1px solid black; border-collapse:collapse;\" > " + th
+sectionEnd = " </th> </tr> "
 
 def getPeople():
 	names = os.listdir("log/")
@@ -37,11 +41,11 @@ def entry():
 @app.route("/results")
 def results():
 	print("In default results page")
-	toDisplay="<ol> "
+	toDisplay = tableStyle + sectionStyle + "Name" + th + "# of Contacts" + sectionEnd
 	people = getPeople()
 	for person in people:
-		toDisplay += " <li>" + person.name + "</li>"
-	toDisplay += " </ol>"
+		toDisplay += sectionStyle + person.name + th + str(person.num) + sectionEnd
+	toDisplay += " </table>"
 	return render_template('results.html', form = "<option selected>Number of calls</option> <option>School</option> <option>Representatives</option>", body=toDisplay)
 
 @app.route("/results", methods=['GET', 'POST'])
@@ -61,10 +65,10 @@ def post():
 			else:
 				schools[schools.index(Counter(person.school, 0))].count += person.num
 		schools.sort(reverse=True)
-		toDisplay="<ol>"
+		toDisplay = tableStyle + sectionStyle + "School" + th + "# of Contacts" + sectionEnd
 		for school in schools:
-			toDisplay += "<li>" + school.name + "</li>"
-		toDisplay += "</ol>"
+			toDisplay += sectionStyle + school.name + th + str(school.count) + sectionEnd
+		toDisplay += "</table>"
 		return render_template('results.html', form = "<option>Number of calls</option> <option selected>School</option> <option>Representatives</option>", body=toDisplay)
 		
 	if page == "Representatives":
@@ -77,20 +81,14 @@ def post():
 				else:
 					reps[reps.index(Counter(rep, 0))].count += 1
 		reps.sort(reverse=True) 
-		toDisplay="<table>"
+		toDisplay = tableStyle + sectionStyle + "Name" + th + "# of Contacts" + sectionEnd
 		for rep in reps:
-			toDisplay += "<tr> <th>" + rep.name + "</th> <th>" + str(rep.count) + "</th> </tr>"
+			toDisplay += sectionStyle + rep.name + th + str(rep.count) + sectionEnd
 
 		toDisplay += "</table>"
 		return render_template('results.html', form = "<option>Number of calls</option> <option>School</option> <option selected>Representatives</option>", body=toDisplay)
 	return "Hello, world!"
 
-
-
-
-@app.route("/names")
-def names():
-      return render_template('names.html')
 
 @app.route('/entry', methods=['POST'])
 def entry_post():
