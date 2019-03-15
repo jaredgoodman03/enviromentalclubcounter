@@ -4,6 +4,10 @@ from person import Person
 import uuid
 import logging
 from scorecounter import Counter
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 app = Flask(__name__)
 tableStyle = "<table style=\"border:1px solid black; border-collapse:collapse;\" >"
@@ -44,7 +48,6 @@ def orourke():
 
 @app.route("/sanders")
 def sanders():
-	#☭☭☭☭☭☭☭☭☭☭☭☭
 	return renderScript("sanders")
 
 @app.route("/barrasso")
